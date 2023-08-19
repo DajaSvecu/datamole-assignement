@@ -48,5 +48,5 @@ Adding off set time key to response could be an option for a better overview fro
 
 Adding new parameter to the function with list of event types we are interested, could be an improvement for reusability of the code in the future.
 
-### C4 Model
+### C4 Model (level 1)
 ![alt text](overview.jpg)
