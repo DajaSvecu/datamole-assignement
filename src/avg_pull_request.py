@@ -7,6 +7,8 @@ def get_avg_pull_request(owner: str, repo_name: str, headers: dict):
     url = "https://api.github.com/repos/{}/{}/events".format(owner,repo_name)
     timestamps = []
     response = requests.get(url=url,headers=headers)
+    if response.status_code != 200:
+        return {"ErrorMessage":"Repository was not found!"}
 
     while response:
         events = response.json()
