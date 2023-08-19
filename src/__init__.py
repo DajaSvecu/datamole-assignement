@@ -1,2 +1,2 @@
-from avg_pull_request import get_avg_pull_request
-from event_count import get_events_count
+from .avg_pull_request import get_avg_pull_request
+from .event_count import get_events_count
