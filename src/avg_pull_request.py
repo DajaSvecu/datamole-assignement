@@ -26,7 +26,11 @@ def get_avg_pull_request(owner: str, repo_name: str, headers: dict):
     np_array = np.array(timestamps_sort)
     deltas = np.diff(np_array)
     mean = np.mean(deltas)
-    return mean
+    return {
+        "Owner": owner,
+        "Repository": repo_name,
+        "Average_pull_request":mean
+    }
 
 # Testing purposes
 if __name__ == "__main__":

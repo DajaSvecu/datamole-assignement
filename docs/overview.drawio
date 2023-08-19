@@ -1,0 +1,60 @@
+<mxfile host="Electron" modified="2023-08-19T16:25:23.539Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" version="21.6.8" etag="9vXQFPP-WMe6RzAE7AzE" type="device">
+  <diagram id="iQZCua6p4Kk16KE2WsUg" name="Stránka-1">
+    <mxGraphModel dx="989" dy="582" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="rWhwu7Wf_SWcdwY1X5iG-1" target="rWhwu7Wf_SWcdwY1X5iG-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="349.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-19" value="CALLS REST API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rWhwu7Wf_SWcdwY1X5iG-3">
+          <mxGeometry x="-0.0335" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-1" value="End user" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.user;" vertex="1" parent="1">
+          <mxGeometry x="10" y="290" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="rWhwu7Wf_SWcdwY1X5iG-25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380.0000000000002" y="350.0000000000001" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="410" y="350" />
+              <mxPoint x="410" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-29" value="Gets counts for&lt;br&gt;required event types" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rWhwu7Wf_SWcdwY1X5iG-27">
+          <mxGeometry x="0.1434" relative="1" as="geometry">
+            <mxPoint x="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="rWhwu7Wf_SWcdwY1X5iG-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380.0000000000002" y="350.0000000000001" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="410" y="350" />
+              <mxPoint x="410" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-32" value="Gets average time between&lt;br&gt;pull requests for repository" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rWhwu7Wf_SWcdwY1X5iG-31">
+          <mxGeometry x="0.4458" y="1" relative="1" as="geometry">
+            <mxPoint x="-22" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-25" value="Event count endpoint&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Calls GitHub API to calculate count per event type&lt;/font&gt;&lt;/span&gt;" style="rounded=1;arcSize=5;fillColor=#0065FF;strokeColor=none;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;html=1;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="260" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-30" value="&lt;div style=&quot;line-height: 120%;&quot;&gt;&lt;div style=&quot;line-height: 120%;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Average pull request endpoint&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 10px; line-height: 120%;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Calls Github API to calculate average time between pull requests events&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 10px; line-height: 120%;&quot;&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;nbsp;for given repository&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;arcSize=5;fillColor=#0065FF;strokeColor=none;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;html=1;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="370" width="210.17" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rWhwu7Wf_SWcdwY1X5iG-33" value="Datamole Assignement&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Allows end user to receive GitHub metrics&lt;/font&gt;&lt;/span&gt;" style="rounded=1;arcSize=5;fillColor=#0065FF;strokeColor=none;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontStyle=1;html=1;sketch=0;" vertex="1" parent="1">
+          <mxGeometry x="240.00000000000006" y="310" width="140" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
