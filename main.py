@@ -4,7 +4,7 @@ from src.event_count import get_events_count
 
 from fastapi import FastAPI
 
-API_TOKEN = os.getenv("API_TOKEN", None)
+API_TOKEN = os.getenv("API_TOKEN")
 if not API_TOKEN:
     raise EnvironmentError("Api Token not found!")
 
