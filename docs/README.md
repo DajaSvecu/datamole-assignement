@@ -16,7 +16,7 @@ Metrics to be implemented:
 * Add another REST API endpoint providing a meaningful visualization of one of existing metrics or a newly introduced metric.
 
 ## Solution
-To provide metrics to end users via a REST API I will need a API framework. Since this project is small I chose **FastAPI**. I haven't work with it yet, but I expect it to be lightweight and easy to use. Other options were Flask and Django. FastAPI will be used together with **uvicorn** as suggested by https://fastapi.tiangolo.com/#installation. For calling GitHub API I will use library **requests** and for manipulating with data library **numpy**.
+To provide metrics to end users via a REST API I will need a API framework. Since this project is small I chose **FastAPI**. I haven't work with it yet, but I expect it to be lightweight and easy to use. Other options were Flask and Django. FastAPI will be used together with **uvicorn** as suggested by https://fastapi.tiangolo.com/#installation. For calling GitHub API I will use library **requests** and for manipulating with data library **numpy**. Python version in this project was 3.8.
 
 All dependencies were saved to *requirements.txt* file.
 
