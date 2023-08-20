@@ -13,10 +13,13 @@ def get_events_count(off_set: int, headers: dict, event_types:tuple):
             break
         next_url = response.links['next']['url']
         response = requests.get(next_url, headers=headers)
-    return process_events(events, off_set_time,event_types)
+    return calculate_count_per_event_type(events, off_set_time,event_types)
 
-def process_events(events:list, off_set_time: datetime, event_types: tuple) -> dict:
-    """Processes events and return total count per event type"""
+def calculate_count_per_event_type(events:list, off_set_time: datetime, event_types: tuple) -> dict:
+    """
+    Filters unwanted events based on event type and time
+    and returns total count per event type
+    """
     counts = {event_type:0 for event_type in event_types}
     for event in events:
         if event["type"] not in event_types:
