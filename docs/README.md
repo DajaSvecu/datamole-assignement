@@ -46,7 +46,5 @@ To get total number of events go to website http://127.0.0.1:8000/events_count/{
 
 Adding off set time key to response could be an option for a better overview from which timeframe we are receiving events.
 
-Adding new parameter to the function with list of event types we are interested, could be an improvement for reusability of the code in the future.
-
 ### C4 Model (level 1)
 ![alt text](overview.jpg)
