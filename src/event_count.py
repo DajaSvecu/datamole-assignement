@@ -35,9 +35,9 @@ if __name__ == "__main__":
     HEADERS = {
         "Accept":"application/vnd.github+json",
     }
-    # API_TOKEN = os.getenv("API_TOKEN")
-    # if API_TOKEN:
-    #     HEADERS["Authorization"]="Bearer {}".format(API_TOKEN)
+    API_TOKEN = os.getenv("API_TOKEN")
+    if API_TOKEN:
+        HEADERS["Authorization"]="Bearer {}".format(API_TOKEN)
 
     result = timeit.timeit(lambda: get_events_count(10, HEADERS, EVENT_TYPES),number=30)
     print(result)

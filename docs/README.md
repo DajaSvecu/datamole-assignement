@@ -34,17 +34,23 @@ run the ASGI web server
 ```
 $ uvicorn main:app --reload
 ```
+OPTIONAL: ```main.py``` is looking for environment variable **API_TOKEN**, but it can run without it.
 ### Average time between pull requests
 To get average time between pull requests go to website http://127.0.0.1:8000/avg_pull_request/{owner}/{repo_name} where *owner* and *repo_name* serve as placeholders for your values.
 
-There are two actions related to PullRequestEvent *opened* and *closed*. In description of the assignement isn't described if I should include both, but since we want to know average time between pull requests it make sense to include only one of these actions. Otherwise the result could be misleading. For this reason I decided to only include *opened* actions. If it was intended to have both actions included, I would simple remove condition which is filtering *closed* events out.
+Function ```get_avg_time_between_repo_events``` is expecting *owner*, *repo_name*, *headers* and *event_type*. Events are gathered here and then they are send to be processed. Function can be reused for other event types as well, so if we would like to have average time between IssueEvents we simply create the endpoint and pass different event type to the function.
 
-Adding new parameter to the function with event type we are interested in would be a good idea for reusability of the code in the future.
+Calculating part was moved to function ```calculate_mean_between_events```. It expects *events* and *event type* to calculate the average time for. Moving calculating to different function was chosen for better readability and reusage of the code for other potential endpoints.
+
+PullRequestEvent has two different actions (opened, closed). Since it would probably be more useful to get average time between just one of these actions its necessary to exclude the other one. Otherwise the result could be misleading. That's why third function ```calculate_mean_between_events_action``` is included but not used. Function provides same functionality with addition filtering on field *action*.
+There are many similarities with the previous calculate function, so they could also be combined or call each other for not repeating.
 
 ### Total number of events
-To get total number of events go to website http://127.0.0.1:8000/events_count/{off_set} where off_set serves as a placeholder for your value in minutes. Integer is expected.
+To get total number of events go to website http://127.0.0.1:8000/events_count/{off_set} where off_set serves as a placeholder for your value in minutes.
 
-Adding off set time key to response could be an option for a better overview from which timeframe we are receiving events.
+Function ```get_events_count``` is expecting *off_set*, *headers* and required *event types* for which we want to know the count. Calculating part was moved to function ```calculate_count_per_event_type```. All events are gathered first and then they are processed. This means we use more storage, but in return we receive more reusable code for the future and also better readability. Other option would be to count the events after each call.
+
+Adding off set time key to response could be an option for a better overview from which timeframe we are receiving events. It would also be possible to receive the list of event types directly from the user as an optional query parameter.
 
 ### C4 Model (level 1)
 ![alt text](overview.jpg)

@@ -64,5 +64,6 @@ if __name__ == "__main__":
 
     OWNER = "mertpekey"
     REPO_NAME = "DeepKinZero"
-    result = timeit.timeit(lambda : get_avg_pull_request(OWNER,REPO_NAME,HEADERS),number=30)
+    PULL_REQUEST_EVENT = "PullRequestEvent"
+    result = timeit.timeit(lambda : get_avg_time_between_repo_events(OWNER,REPO_NAME,HEADERS,PULL_REQUEST_EVENT),number=30)
     print(result)
