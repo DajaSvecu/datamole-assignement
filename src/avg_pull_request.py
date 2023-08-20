@@ -13,7 +13,10 @@ def get_avg_pull_request(owner: str, repo_name: str, headers: dict):
     while response:
         events = response.json()
         # Alternative would be to create for loop with two if statements if more readability
+        # Only opened action
         new_timestamps = [event["created_at"] for event in events if event["type"] =="PullRequestEvent" and event["payload"]["action"]=="opened"]
+        # Both actions
+        # new_timestamps = [event["created_at"] for event in events if event["type"] =="PullRequestEvent"]
         # Decided to get timestamps since epoch for better comparability
         timestamps_epoch = [datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ").timestamp() for timestamp in new_timestamps]
         timestamps.extend(timestamps_epoch)
