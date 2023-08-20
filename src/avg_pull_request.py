@@ -1,41 +1,56 @@
 import requests
 import numpy as np
-from datetime import datetime
+from datetime import datetime,timedelta
 
-def get_avg_pull_request(owner: str, repo_name: str, headers: dict):
-    """Calculates average time between opened pull requests for given repository"""
+def get_avg_time_between_repo_events(owner: str, repo_name: str, headers: dict, event_type: str) -> dict:
+    """Returns average time between opened pull requests for given repository"""
     url = "https://api.github.com/repos/{}/{}/events".format(owner,repo_name)
-    timestamps = []
-    response = requests.get(url=url,headers=headers)
+    events = []
+    response = requests.get(url=url,headers=headers,params={"per_page":100})
     if response.status_code != 200:
-        return {"ErrorMessage":"Repository was not found!"}
+        return {"ErrorMessage":"Error occured!","StatusCode": response.status_code}
 
     while response:
-        events = response.json()
-        # Alternative would be to create for loop with two if statements if more readability
-        # Only opened action
-        new_timestamps = [event["created_at"] for event in events if event["type"] =="PullRequestEvent" and event["payload"]["action"]=="opened"]
-        # Both actions
-        # new_timestamps = [event["created_at"] for event in events if event["type"] =="PullRequestEvent"]
-        # Decided to get timestamps since epoch for better comparability
-        timestamps_epoch = [datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ").timestamp() for timestamp in new_timestamps]
-        timestamps.extend(timestamps_epoch)
-        if 'next' in response.links:
-            next_url = response.links['next']['url']
-            response = requests.get(next_url, headers=headers)
-        else:
-            # print("No more pages to retrieve.")
+        events.extend(response.json())
+        if 'next' not in response.links:
             break
-    # Alternative - use library math, but numpy is cleaner option in my opinion
-    timestamps_sort = sorted(timestamps)
-    np_array = np.array(timestamps_sort)
-    deltas = np.diff(np_array)
-    mean = np.mean(deltas)
+        next_url = response.links['next']['url']
+        response = requests.get(next_url, headers=headers)
+
+    mean = calculate_mean_between_events(events, event_type)
+    # mean = calculate_mean_between_events_action(events, event_type, "opened")
     return {
         "Owner": owner,
         "Repository": repo_name,
-        "Average_pull_request":mean
+        "AveragePullRequest": timedelta(seconds=mean).__str__(),
+        "AveragePullRequestSeconds":mean,
     }
+
+def calculate_mean_between_events(events:list, event_type:str) -> float:
+    """Calculates average time between events for given
+    event type and returns it in seconds """
+    timestamps = []
+    for event in events:
+        if event["type"] != event_type:
+            continue
+        timestamps.append(datetime.strptime(event["created_at"], "%Y-%m-%dT%H:%M:%SZ").timestamp())
+    timestamps_sorted = sorted(timestamps)
+    np_array = np.array(timestamps_sorted)
+    deltas = np.diff(np_array)
+    return np.mean(deltas)
+
+def calculate_mean_between_events_action(events:list, event_type:str, action:str) -> float:
+    """Calculates average time between events for given
+    event type and action and returns it in seconds """
+    timestamps = []
+    for event in events:
+        if event["type"] != event_type or event["payload"]["action"] != action:
+            continue
+        timestamps.append(datetime.strptime(event["created_at"], "%Y-%m-%dT%H:%M:%SZ").timestamp())
+    timestamps_sorted = sorted(timestamps)
+    np_array = np.array(timestamps_sorted)
+    deltas = np.diff(np_array)
+    return np.mean(deltas)
 
 # Testing purposes
 if __name__ == "__main__":

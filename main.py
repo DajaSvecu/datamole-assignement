@@ -1,8 +1,9 @@
 import os
 from fastapi import FastAPI
-from src import get_avg_pull_request,get_events_count
+from src import get_avg_time_between_repo_events, get_events_count
 
 EVENT_TYPES = ("WatchEvent","PullRequestEvent","IssuesEvent")
+PULL_REQUEST_EVENT = "PullRequestEvent"
 
 HEADERS = {
     "Accept":"application/vnd.github+json",
@@ -21,9 +22,10 @@ def read_root():
 def events_count(off_set: int):
     """Returns the total number of events grouped by the event type
     for a given offset"""
-    return get_events_count(off_set,HEADERS, EVENT_TYPES)
+    return get_events_count(off_set,HEADERS,EVENT_TYPES)
 
 @app.get("/avg_pull_request/{owner}/{repo_name}")
 def avg_pull_request(owner: str,repo_name: str):
-    """Returns average time between opened pull requests for a given repository"""
-    return get_avg_pull_request(owner,repo_name,HEADERS)
+    """Returns average time between opened pull requests
+    for a given repository"""
+    return get_avg_time_between_repo_events(owner,repo_name,HEADERS,PULL_REQUEST_EVENT)

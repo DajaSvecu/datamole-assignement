@@ -1,2 +1,2 @@
-from .avg_pull_request import get_avg_pull_request
+from .avg_pull_request import get_avg_time_between_repo_events
 from .event_count import get_events_count
